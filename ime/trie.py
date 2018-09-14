@@ -40,6 +40,22 @@ class Trie:
 
         return node.words
 
+    def find_candidate(self, pinyin):
+        node = self.root
+        candidate = []
+        cur_index = 0
+        for i, char in enumerate(pinyin):
+            if node.words:
+                candidate.extend([(i, w) for w in node.words])
+                cur_index = i
+            if char not in node.children:
+                break
+
+            node = node.children[char]
+
+        candidate.sort(key=lambda x: (x[0], x[1].freq), reverse=True)
+        return candidate, pinyin[cur_index:]
+
     def sort_by_freq(self):
         def _sort(node):
             node.words.sort(key=lambda w: w.freq, reverse=True)

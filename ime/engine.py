@@ -11,5 +11,9 @@ class Engine:
 
     def search(self, pinyin):
         # whole word
-        if self.trie.find_word(pinyin):
-            return self.trie.find_word(pinyin)
+        word = self.trie.find_word(pinyin)
+        if word:
+            return word, ''
+
+        # candidate
+        return self.trie.find_candidate(pinyin)
