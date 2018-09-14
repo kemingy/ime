@@ -44,17 +44,21 @@ class Trie:
         node = self.root
         candidate = []
         cur_index = 0
-        for i, char in enumerate(pinyin):
+        length = len(pinyin)
+        while cur_index < length:
             if node.words:
-                candidate.extend([(i, w) for w in node.words])
-                cur_index = i
-            if char not in node.children:
+                candidate.extend([(cur_index, w) for w in node.words])
+            if pinyin[cur_index] not in node.children:
                 break
 
-            node = node.children[char]
+            node = node.children[pinyin[cur_index]]
+            cur_index += 1
+
+        if cur_index == length:
+            candidate.extend([(length, w) for w in node.words])
 
         candidate.sort(key=lambda x: (x[0], x[1].freq), reverse=True)
-        return candidate, pinyin[cur_index:]
+        return candidate
 
     def sort_by_freq(self):
         def _sort(node):
