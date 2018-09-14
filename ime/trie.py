@@ -26,7 +26,10 @@ class Trie:
                 node.children[char] = child
             node = node.children[char]
 
-        node.add_word(word, freq)
+        if word in [w.han for w in node.words]:
+            print('Word "{}" already in this tree.'.format(word))
+        else:
+            node.add_word(word, freq)
 
     def find_word(self, pinyin):
         node = self.root
@@ -57,8 +60,14 @@ class Trie:
                     child = Node(char)
                     node.children[char] = child
                 node = node.children[char]
-            
-            node.words.extend([Word(han, freq) for han, freq in data[pinyin]])
-            count += len(data[pinyin])
+
+            words = set([w.han for w in node.words])
+            for han, freq in data[pinyin]:
+                if han in words:
+                    continue
+
+                words.add(han)
+                node.words.append(Word(han, freq))
+                count += 1
 
         print('Added {} wrods.'.format(count))
