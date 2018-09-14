@@ -41,13 +41,13 @@ class Trie:
         def _sort(node):
             node.words.sort(key=lambda w: w.freq, reverse=True)
             for child in node.children:
-                _sort(child)
+                _sort(node.children[child])
 
         _sort(self.root)
 
-    def batch_build(self, data):
+    def batch_add(self, data):
         """
-        :param dict data: pinyin-[words]
+        :param dict data: pinyin-[(word, freq)]
         """
         count = 0
         for pinyin in data:
@@ -58,7 +58,7 @@ class Trie:
                     node.children[char] = child
                 node = node.children[char]
             
-            node.words.extend(data[pinyin])
+            node.words.extend([Word(han, freq) for han, freq in data[pinyin]])
             count += len(data[pinyin])
 
-        print('Add {} phrases.'.format(count))
+        print('Added {} wrods.'.format(count))
