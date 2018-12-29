@@ -1,5 +1,7 @@
 # Chinese Pinyin Input Method Engine
 
+[![Build Status](https://travis-ci.org/kemingy/ime.svg?branch=master)](https://travis-ci.org/kemingy/ime)
+
 Yet another input method engine.
 
 You can download data from [Google code(hslinuxextra)](https://code.google.com/archive/p/hslinuxextra/downloads).
