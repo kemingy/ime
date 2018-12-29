@@ -29,4 +29,3 @@ def get_ngram_phrase(n, db_path=Config.db_path):
     print('Get {} words and {} pinyin.'.format(count, len(data)))
 
     return data
-

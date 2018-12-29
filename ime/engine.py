@@ -17,3 +17,12 @@ class Engine:
 
         # candidate
         return self.trie.find_candidate(pinyin)
+
+    def greedy_search(self, pinyin):
+        pass
+
+    def full_search(self, pinyin):
+        pass
+
+    def beam_search(self, pinyin):
+        pass

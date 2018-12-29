@@ -6,7 +6,7 @@ You can download data from [Google code(hslinuxextra)](https://code.google.com/a
 
 ## Tutorial
 
-```
+```py
 >> from ime.engine import Engine
 >> e = Engine()
 
